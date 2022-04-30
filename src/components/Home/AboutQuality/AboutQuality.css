@@ -1,0 +1,9 @@
+.quality-title h1{ 
+    border-bottom: 2px solid #9E877D !important;
+}
+.quality-img {
+    max-width: 400px;
+}
+.quality-img  img {
+    width:100%;
+}
