@@ -46,6 +46,9 @@ const Login = () => {
         }
        
     };
+    if (user) {
+        console.log(user);
+    }
     // handel error message 
     let errorMessage;
     if (error) {
