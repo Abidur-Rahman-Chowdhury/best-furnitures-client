@@ -3,19 +3,20 @@ import './Signup.css';
 import signup from '../../images/login-signup/signup.png';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
+  // create user with email and pass
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
     ] = useCreateUserWithEmailAndPassword(auth, {sendEmailVerification: true});
-    const navigation = useNavigate();
+  //   handel signup functionality
       const handelSignup = (e) => {
         e.preventDefault();
         const name = e.target.name.value;
@@ -27,12 +28,13 @@ const Signup = () => {
 
          
    
-    }
+  }
+  // handel error message
     let errorMessage;
     if (error) {
         errorMessage = <p className='text-red-700 ml-5 mb-4'>{ error.message}</p>
     }
-    
+    // handel loading
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
     }

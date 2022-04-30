@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import './Login.css'
 import login from '../../images/login-signup/login.png'
 import { Link } from 'react-router-dom';
@@ -13,9 +13,7 @@ import 'react-toastify/dist/ReactToastify.css';
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
-    
- 
-
+    // 
   const [
     signInWithEmailAndPassword,
     user,
@@ -35,7 +33,7 @@ const Login = () => {
         
     }
     // handel reset password
-    const handedlPasswordReset = async () => {
+    const handelPasswordReset = async () => {
         const email = emailRef.current.value;
         if (email) {
           await sendPasswordResetEmail(email);
@@ -71,7 +69,7 @@ const Login = () => {
                   <br />
                   { error ? errorMessage : ''}
                   <p className='mb-1 ml-5'>Don't have an account? <Link to='/signup' className='text-[#6C63FF]'>Please Signup</Link> </p>
-                  <p className='mb-4 ml-5'>Forget Passowrd? <span onClick={()=> handedlPasswordReset()}  className='text-[#6C63FF] cursor-pointer'>Reset Password</span> </p>
+                  <p className='mb-4 ml-5'>Forget Password? <span onClick={()=> handelPasswordReset()}  className='text-[#6C63FF] cursor-pointer'>Reset Password</span> </p>
                   
                   <div className='pl-6'>
                   <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Login' />     
