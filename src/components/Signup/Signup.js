@@ -21,16 +21,18 @@ const Signup = () => {
         const name = e.target.name.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
-          console.log(name, email, password);
           createUserWithEmailAndPassword(email, password);
-          
+          toast('Your account is successfully created');
           e.target.reset();
+
+         
    
     }
     let errorMessage;
     if (error) {
         errorMessage = <p className='text-red-700 ml-5 mb-4'>{ error.message}</p>
     }
+    
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
     }
@@ -57,7 +59,7 @@ const Signup = () => {
                   <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Signup' />     
                 </div>
               </form>
-              <ToastContainer></ToastContainer>
+              <ToastContainer></ToastContainer> 
           </div>
      </div>
   );
