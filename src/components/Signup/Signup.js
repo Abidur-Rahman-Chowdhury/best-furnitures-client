@@ -8,6 +8,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Social from '../Social/Social';
 const Signup = () => {
   // create user with email and pass
     const [
@@ -59,7 +60,8 @@ const Signup = () => {
                   
                   <div className='pl-6'>
                   <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Signup' />     
-                </div>
+          </div>
+          <Social></Social>
               </form>
               <ToastContainer></ToastContainer> 
           </div>

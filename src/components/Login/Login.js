@@ -2,7 +2,7 @@ import React, { useRef } from 'react';
 import './Login.css'
 import login from '../../images/login-signup/login.png'
 import { Link } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
@@ -10,6 +10,7 @@ import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
+import Social from '../Social/Social';
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -23,6 +24,7 @@ const Login = () => {
     const [sendPasswordResetEmail, sending, error2 ] = useSendPasswordResetEmail(
         auth
     );
+  
     // handel login
     const handelLogin = (e) => {
         e.preventDefault();
@@ -72,11 +74,13 @@ const Login = () => {
                   <p className='mb-4 ml-5'>Forget Password? <span onClick={()=> handelPasswordReset()}  className='text-[#6C63FF] cursor-pointer'>Reset Password</span> </p>
                   
                   <div className='pl-6'>
-                  <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Login' />     
+                        <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Login' />     
+                       
                     </div>
+                    <Social></Social>
                     <ToastContainer></ToastContainer>
               </form>
-              
+             
             </div>
             <div>
               <img src={login} alt='signupImage'/>
