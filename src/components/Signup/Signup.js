@@ -4,6 +4,10 @@ import signup from '../../images/login-signup/signup.png';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import { Link, useNavigate } from 'react-router-dom';
+import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
+import { ToastContainer, toast } from 'react-toastify';
+
+import 'react-toastify/dist/ReactToastify.css';
 const Signup = () => {
     const [
         createUserWithEmailAndPassword,
@@ -19,8 +23,16 @@ const Signup = () => {
         const password = e.target.password.value;
           console.log(name, email, password);
           createUserWithEmailAndPassword(email, password);
+          
           e.target.reset();
    
+    }
+    let errorMessage;
+    if (error) {
+        errorMessage = <p className='text-red-700 ml-5 mb-4'>{ error.message}</p>
+    }
+    if (loading) {
+        return <LoadingSpinner></LoadingSpinner>
     }
    
   return (
@@ -32,17 +44,20 @@ const Signup = () => {
               <h2 className='text-4xl font-bold text-[#6C63FF] text-center'>Sign Up</h2>
 
               <form className='mt-10  p-4 rounded-md shadow-lg ' onSubmit={handelSignup}>
-                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="text" name='name' placeholder='Name' />
+                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="text" name='name' placeholder='Name' required />
                   <br />
-                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="email" name="email" placeholder='Email' />
+                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="email" name="email" placeholder='Email' required/>
                   <br />
-                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="password" name="password" placeholder='Password' />
+                  <input className='border-bottom w-2/4 mb-4 px-2 pb-3 ml-5 pt-2' type="password" name="password" placeholder='Password' required/>
                   <br />
+                  { error ? errorMessage : ''}
                   <p className='mb-4 ml-5'>Already have and account? <Link to='/login' className='text-[#6C63FF]'>Please Login</Link> </p>
+                  
                   <div className='pl-6'>
                   <input className='btn bg-[#6C63FF] text-xl font-bold text-white px-4 py-2 rounded-md' type="submit" value='Signup' />     
                 </div>
               </form>
+              <ToastContainer></ToastContainer>
           </div>
      </div>
   );
