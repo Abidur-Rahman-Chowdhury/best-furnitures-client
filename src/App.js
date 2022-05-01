@@ -11,6 +11,7 @@ import RequiredAuth from './components/RequiredAuth/RequiredAuth';
 import UpdateStock from './components/UpdateStock/UpdateStock';
 import ManageInventories from './components/ManageInventories/ManageInventories';
 import Footer from './components/Footer/Footer';
+import ManageInventory from './components/ManageInventory/ManageInventory';
 
 
 function App() {
@@ -31,6 +32,11 @@ function App() {
             <ManageInventories></ManageInventories>
           </RequiredAuth>
         }></Route>
+        {/* <Route path='/manage-inventory/:id' element={ 
+          <RequiredAuth>
+            <ManageInventory></ManageInventory>
+          </RequiredAuth>
+        }></Route> */}
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<Signup></Signup>}></Route>
        
