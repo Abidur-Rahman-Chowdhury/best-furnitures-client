@@ -8,9 +8,7 @@ const Furnitures = () => {
     const [furnitures, setFurnitures] = useLoadFurnitures();
 
     const sixFurnitures = furnitures.slice(0, 6);
-    if (!sixFurnitures) {
-        return <LoadingSpinner></LoadingSpinner>
-    }
+  
     return (
         <div className='container mt-10'>
           <div className="text-center quality-title mb-2">
@@ -29,6 +27,7 @@ const Furnitures = () => {
                 <button className='bg-[#6C63FF] px-2 py-1 mt-4 mr-2 text-white font-bold' >Manage Inventory</button>
                 </Link>
             </div>
+           <hr className='bg-[black] h-[15px] mt-10' />
         </div>
     );
 };
