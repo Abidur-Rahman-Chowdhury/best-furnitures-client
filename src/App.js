@@ -10,6 +10,7 @@ import Login from './components/Login/Login';
 import RequiredAuth from './components/RequiredAuth/RequiredAuth';
 import UpdateStock from './components/UpdateStock/UpdateStock';
 import ManageInventories from './components/ManageInventories/ManageInventories';
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -35,6 +36,7 @@ function App() {
        
         <Route path='*' element={ <PageNotFound></PageNotFound>}></Route>
       </Routes>
+      <Footer></Footer>
     </div>
   );
 }

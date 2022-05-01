@@ -69,7 +69,7 @@ const Login = () => {
     }
 
     return (
-        <div className='mt-20 container grid  grid-cols-1 md:grid-cols-2 gap-2'>
+        <div className='mt-10 mb-3 container grid  grid-cols-1 md:grid-cols-2 gap-2'>
           <div className='mt-20'>
               <h2 className='text-4xl font-bold text-[#6C63FF] text-center'>Login</h2>
 

@@ -44,7 +44,7 @@ const Signup = () => {
     }
    
   return (
-      <div className='mt-20 container grid grid-cols-1 md:grid-cols-2'>
+      <div className='mt-20 container grid grid-cols-1 md:grid-cols-2 mb-[138px]'>
           <div>
               <img src={signup} alt='signupImage'/>
           </div>
