@@ -1,8 +1,13 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { signOut } from 'firebase/auth';
 
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
+import auth from '../../firebase.init';
 import './Header.css';
 const Header = () => {
+    const [user, loading] = useAuthState(auth);
+    
   return (
       <nav className='bg-[#FFFFFF] shadow-md'>
           <div className="container flex flex-col  p-10 items-center sm:flex-col md:gap-y-4 lg:flex-row justify-between">
@@ -12,8 +17,14 @@ const Header = () => {
               <ul className='flex gap-4 text-xl '>
                   <Link to='/home'>Home</Link>
                   <Link to='/blogs'>Blogs</Link>
-                  <Link to='/login'>Login</Link>
-                  <Link to='/signup'>Signup</Link>
+                  {user && <>
+                       <Link to='/manage-inventory'>Manage Inventory</Link>
+                       <Link to='/add-items'>Add New Items</Link>
+                       <Link to='/my-items'>My Items</Link>
+                       
+                  </>}
+                  { user ? <button onClick={()=>signOut(auth)}>Sign Out</button> : <Link to='/login'>Login</Link>}
+                  {!user&&<Link to='/signup'>Signup</Link>}
               </ul>
           </div>
     

@@ -1,8 +1,8 @@
 import React, { useRef } from 'react';
 import './Login.css'
 import login from '../../images/login-signup/login.png'
-import { Link } from 'react-router-dom';
-import { useSignInWithEmailAndPassword, useSignInWithGoogle } from 'react-firebase-hooks/auth';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useSignInWithEmailAndPassword} from 'react-firebase-hooks/auth';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
@@ -14,26 +14,32 @@ import Social from '../Social/Social';
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
-    // 
-  const [
-    signInWithEmailAndPassword,
-    user,
-    loading,
-    error,
-    ] = useSignInWithEmailAndPassword(auth);
+
+    const [
+      signInWithEmailAndPassword,
+      user,
+      loading,
+      error,
+      ] = useSignInWithEmailAndPassword(auth);
     const [sendPasswordResetEmail, sending, error2 ] = useSendPasswordResetEmail(
         auth
     );
-  
-    // handel login
-    const handelLogin = (e) => {
+    const navigate = useNavigate();
+    const location = useLocation();
+    let from = location.state?.from?.pathname || '/';
+    if (user) {
+        navigate(from, { replace: true });
+      }
+
+    let handelLogin = (e) => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
         signInWithEmailAndPassword(email, password);
         e.target.reset();
         
-    }
+    };
+
     // handel reset password
     const handelPasswordReset = async () => {
         const email = emailRef.current.value;
@@ -61,7 +67,7 @@ const Login = () => {
     if (sending) {
         return <LoadingSpinner></LoadingSpinner>
     }
-    
+
     return (
         <div className='mt-20 container grid  grid-cols-1 md:grid-cols-2 gap-2'>
           <div className='mt-20'>
