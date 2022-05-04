@@ -3,12 +3,12 @@ import useLoadFurnitures from '../../hooks/useLoadFurnitures';
 
 const ManageInventory = ({ furniture }) => {
   const { _id, name, img, des, price, quantity, supplier } = furniture;
-    const [furnitures, setFurnitures] = useLoadFurnitures();
-  
-  const handelDelete =  (id) => {
+  const [furnitures, setFurnitures] = useLoadFurnitures();
+
+  const handelDelete = (id) => {
     const proceed = window.confirm('Are you sure you want to delete?');
     if (proceed) {
-      const url = `http://localhost:5000/furnitures/${id}`;
+      const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
       console.log(url);
       fetch(url, {
         method: 'DELETE',
@@ -18,9 +18,11 @@ const ManageInventory = ({ furniture }) => {
           console.log(data);
           if (data.deletedCount > 0) {
             alert('Successfully deleted furniture');
-              const restFurniture = furnitures.filter(furniture => furniture._id !== id);
-              console.log(restFurniture);
-              setFurnitures(restFurniture);
+            const restFurniture = furnitures.filter(
+              (furniture) => furniture._id !== id
+            );
+            console.log(restFurniture);
+            setFurnitures(restFurniture);
           }
         });
     }

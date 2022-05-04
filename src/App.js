@@ -13,6 +13,7 @@ import ManageInventories from './components/ManageInventories/ManageInventories'
 import Footer from './components/Footer/Footer';
 import ManageInventory from './components/ManageInventory/ManageInventory';
 import AddItems from './components/AddItems/AddItems';
+import MyItems from './components/MyItems/MyItems';
 
 
 function App() {
@@ -36,6 +37,11 @@ function App() {
         <Route path='/add-items' element={ 
           <RequiredAuth>
            <AddItems></AddItems>
+          </RequiredAuth>
+        }></Route>
+        <Route path='/my-items' element={ 
+          <RequiredAuth>
+           <MyItems></MyItems>
           </RequiredAuth>
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>

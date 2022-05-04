@@ -10,31 +10,31 @@ const AddItems = () => {
     const price = parseInt(e.target.price.value);
     const quantity = parseInt(e.target.quantity.value);
     const sold = parseInt(e.target.sold.value);
-      const supplier = e.target.supplier.value;
-      const furnitures = {
-          name,
-          img,
-          des,
-          price,
-          quantity,
-          sold,
-          supplier
-      }
-      console.log(name, img, des, price, quantity, sold, supplier);
-      fetch('http://localhost:5000/furnitures', {
-          method: 'POST',
-          headers: {
-              "content-type": "application/json",
-          },
-          body:JSON.stringify(furnitures)
-      })
-          .then(res => res.json())
-          .then(data => {
-              if (data.insertedId) {
-                  alert('Furniture successfully added');
-                  e.target.reset();
-          }
-      })
+    const supplier = e.target.supplier.value;
+    const furnitures = {
+      name,
+      img,
+      des,
+      price,
+      quantity,
+      sold,
+      supplier,
+    };
+    console.log(name, img, des, price, quantity, sold, supplier);
+    fetch('https://vast-wave-24751.herokuapp.com/furnitures', {
+      method: 'POST',
+      headers: {
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify(furnitures),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.insertedId) {
+          alert('Furniture successfully added');
+          e.target.reset();
+        }
+      });
   };
   return (
     <div className="mt-20 mb-[200px]">

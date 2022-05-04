@@ -1,0 +1,11 @@
+.delivered-btn {
+    outline-style: outset;
+    outline-width: 1px;
+    outline-color: red;
+    border: 1px solid red;
+    
+    padding: 10px 15px;
+    border-radius: 5px;
+    color: red;
+    font-weight: bold;
+}
