@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
 import auth from '../../../firebase.init';
@@ -14,7 +14,9 @@ const Furniture = ({ furniture }) => {
     }
     const addMyItems = () => {
         furniture.email = user.email;
-        console.log(furniture);
+        delete furniture._id;
+        
+       
         fetch('http://localhost:5000/myItems', {
             method: 'POST',
             headers: {
@@ -25,9 +27,11 @@ const Furniture = ({ furniture }) => {
         })
             .then(res => res.json())
             .then(data => {
+                console.log(data);
                 alert('Successfully added my items');
         })
     } 
+   
     return (
         <div>
             <div className='img-container border p-4 rounded-lg'>
