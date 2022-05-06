@@ -30,9 +30,7 @@ const Signup = () => {
          
    
   }
-  if (user) {
-    console.log(user);
-  }
+  
   // handel error message
     let errorMessage;
     if (error) {

@@ -20,7 +20,7 @@ const AddItems = () => {
       sold,
       supplier,
     };
-    console.log(name, img, des, price, quantity, sold, supplier);
+    
     fetch('https://vast-wave-24751.herokuapp.com/furnitures', {
       method: 'POST',
       headers: {

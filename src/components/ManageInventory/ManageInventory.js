@@ -9,19 +9,19 @@ const ManageInventory = ({ furniture }) => {
     const proceed = window.confirm('Are you sure you want to delete?');
     if (proceed) {
       const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
-      console.log(url);
+      
       fetch(url, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          
           if (data.deletedCount > 0) {
             alert('Successfully deleted furniture');
             const restFurniture = furnitures.filter(
               (furniture) => furniture._id !== id
             );
-            console.log(restFurniture);
+            
             setFurnitures(restFurniture);
           }
         });

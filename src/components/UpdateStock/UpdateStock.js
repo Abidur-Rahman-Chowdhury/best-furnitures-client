@@ -30,7 +30,7 @@ const UpdateStock = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        
         alert('delivered successful');
       });
   };
@@ -48,7 +48,7 @@ const UpdateStock = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+       
         alert('re-stock successful');
         e.target.reset();
       });
@@ -88,7 +88,7 @@ const UpdateStock = () => {
             className="w-[80%] border px-3 h-[40px] rounded-lg text-xl"
             type="text"
             name="quantity"
-            placeholder="Re-Stock Furniture Quantity"
+            placeholder="Re-Stock Furniture Quantity" required
           />
           <input
             className=" text-xl font-bold bg-[green] px-4 py-1 rounded-lg text-white"

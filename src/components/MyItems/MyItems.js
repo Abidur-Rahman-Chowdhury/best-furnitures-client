@@ -1,32 +1,49 @@
+import axios from 'axios';
+import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
+import { Navigate, useNavigate } from 'react-router-dom';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
 const MyItems = () => {
   const [user] = useAuthState(auth);
   const [myItems, setMyItems] = useState([]);
+  const navigate = useNavigate()
   useEffect(() => {
-    const url = `https://vast-wave-24751.herokuapp.com/myItems/${user?.email}`;
-    fetch(url)
-      .then((res) => res.json())
-      .then((data) => setMyItems(data));
-  }, [myItems]);
+    const getItems = async () => {
+      const email = user.email;
+      const url = `http://localhost:5000/myItems?email=${email}`;
+      try {
+        const { data } = await axios.get(url, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`
+          }
+        });
+        setMyItems(data);
+      }
+      catch (err) {
+        signOut(auth)
+        navigate('/login');
+      }
+    }
+    getItems();
+  },[user])
   const CancelMyItems = (id) => {
     const proceed = window.confirm('Are you sure you want to cancel?');
     if (proceed) {
       const url = `https://vast-wave-24751.herokuapp.com/myItems/${id}`;
-      console.log(url);
+      
       fetch(url, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
+          
           if (data.deletedCount > 0) {
             alert('Successfully cancel my items');
             const restMyItems = myItems.filter((myItem) => myItem._id !== id);
-            console.log(restMyItems);
+            
             setMyItems(restMyItems);
           }
         });

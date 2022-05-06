@@ -11,6 +11,7 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 import Social from '../Social/Social';
+import axios from 'axios';
 const Login = () => {
     const emailRef = useRef('');
     const passwordRef = useRef('');
@@ -31,12 +32,15 @@ const Login = () => {
         navigate(from, { replace: true });
       }
 
-    let handelLogin = (e) => {
+    let handelLogin = async (e) => {
         e.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
-        signInWithEmailAndPassword(email, password);
+        await signInWithEmailAndPassword(email, password);
+        const { data } = await axios.post('http://localhost:5000/login', { email });
+        localStorage.setItem("accessToken", data.accessToken);
         e.target.reset();
+        
         
     };
 
@@ -52,9 +56,7 @@ const Login = () => {
         }
        
     };
-    if (user) {
-        console.log(user);
-    }
+    
     // handel error message 
     let errorMessage;
     if (error) {
@@ -64,10 +66,7 @@ const Login = () => {
     if (loading) {
         return <LoadingSpinner></LoadingSpinner>
     }
-    if (sending) {
-        return <LoadingSpinner></LoadingSpinner>
-    }
-
+    
     return (
         <div className='mt-10 mb-3 container grid  grid-cols-1 md:grid-cols-2 gap-2'>
           <div className='mt-20'>
