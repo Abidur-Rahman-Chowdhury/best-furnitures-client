@@ -9,41 +9,39 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 const MyItems = () => {
   const [user] = useAuthState(auth);
   const [myItems, setMyItems] = useState([]);
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   useEffect(() => {
     const getItems = async () => {
       const email = user.email;
-      const url = `http://localhost:5000/myItems?email=${email}`;
+      const url = `https://vast-wave-24751.herokuapp.com/myItems?email=${email}`;
       try {
         const { data } = await axios.get(url, {
           headers: {
-            authorization: `Bearer ${localStorage.getItem('accessToken')}`
-          }
+            authorization: `Bearer ${localStorage.getItem('accessToken')}`,
+          },
         });
         setMyItems(data);
-      }
-      catch (err) {
-        signOut(auth)
+      } catch (err) {
+        signOut(auth);
         navigate('/login');
       }
-    }
+    };
     getItems();
-  },[user])
+  }, [user]);
   const CancelMyItems = (id) => {
     const proceed = window.confirm('Are you sure you want to cancel?');
     if (proceed) {
       const url = `https://vast-wave-24751.herokuapp.com/myItems/${id}`;
-      
+
       fetch(url, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-          
           if (data.deletedCount > 0) {
             alert('Successfully cancel my items');
             const restMyItems = myItems.filter((myItem) => myItem._id !== id);
-            
+
             setMyItems(restMyItems);
           }
         });
