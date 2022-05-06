@@ -11,11 +11,11 @@ Live Demo: [Best Furniture](https://furnitures-managements.web.app/).
 
 - User Can create account both using email/password also social login like Google Sign in
 - Admin/ User can update his/her product 
-- Private route is implemented for updating / modifying product. User must be loged in to update product
+- Private route is implemented for updating / modifying product. User must be logged in to update product
 - Admin/User can add more product if he/she want.
 - Admin/User also can delete product if he/she want.
 - If a user want to see his/her product in my-items page he/she have to be a valid user. The get API is being secure implementing JWT token. If he/she is not a valid user he/she will redirect to the login page. They have to login again to generate a access token.  
-- Implement reduce quantity while delivered button is clicked also increase the quanity while re-stock button in clicked.
+- Implement reduce quantity while delivered button is clicked also increase the quantity while re-stock button in clicked.
 
 
 
