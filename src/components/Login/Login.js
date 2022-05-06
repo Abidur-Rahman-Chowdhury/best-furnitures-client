@@ -25,7 +25,8 @@ const Login = () => {
   let from = location.state?.from?.pathname || '/';
   if (user) {
     navigate(from, { replace: true });
-  }
+    }
+    
 
   let handelLogin = async (e) => {
     e.preventDefault();
