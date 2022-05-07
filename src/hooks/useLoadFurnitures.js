@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
+import { baseUrl } from "../api/constant";
 
 const useLoadFurnitures = () => {
     const [furnitures, setFurnitures] = useState([]);
 
     useEffect(() => {
-        fetch('https://vast-wave-24751.herokuapp.com/furnitures')
+        fetch(`${baseUrl}/furnitures`)
             .then(res => res.json())
             .then(data => setFurnitures(data));
         
@@ -13,4 +14,4 @@ const useLoadFurnitures = () => {
     return [furnitures, setFurnitures];
 }
 
-export default useLoadFurnitures;
+export default useLoadFurnitures; 

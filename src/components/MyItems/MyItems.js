@@ -3,6 +3,7 @@ import { signOut } from 'firebase/auth';
 import React, { useEffect, useState } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { Navigate, useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../api/constant';
 import auth from '../../firebase.init';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 
@@ -13,7 +14,8 @@ const MyItems = () => {
   useEffect(() => {
     const getItems = async () => {
       const email = user.email;
-      const url = `https://vast-wave-24751.herokuapp.com/myItems?email=${email}`;
+      const url = `${baseUrl}/myItems?email=${email}`;
+      console.log(url);
       try {
         const { data } = await axios.get(url, {
           headers: {
@@ -31,12 +33,12 @@ const MyItems = () => {
   const CancelMyItems = (id) => {
     const proceed = window.confirm('Are you sure you want to cancel?');
     if (proceed) {
-      const url = `https://vast-wave-24751.herokuapp.com/myItems/${id}`;
+      const url = `${baseUrl}/myItems/${id}`;
 
       fetch(url, {
         method: 'DELETE',
       })
-        .then((res) => res.json())
+        .then((res) => res.json()) 
         .then((data) => {
           if (data.deletedCount > 0) {
             alert('Successfully cancel my items');

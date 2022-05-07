@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../api/constant';
 import auth from '../../firebase.init';
 import useLoadFurnitures from '../../hooks/useLoadFurnitures';
 import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
@@ -13,20 +14,19 @@ const ManageInventories = () => {
   const handelDelete = (id) => {
     const proceed = window.confirm('Are you sure you want to delete?');
     if (proceed) {
-      const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
-      
+      const url = `${baseUrl}/furnitures/${id}`;
+
       fetch(url, {
         method: 'DELETE',
       })
         .then((res) => res.json())
         .then((data) => {
-         
           if (data.deletedCount > 0) {
             alert('Successfully deleted furniture');
             const restFurniture = furnitures.filter(
               (furniture) => furniture._id !== id
             );
-            
+
             setFurnitures(restFurniture);
           }
         });

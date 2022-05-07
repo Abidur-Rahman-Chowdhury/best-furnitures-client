@@ -1,7 +1,12 @@
 import React from 'react';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { baseUrl } from '../../api/constant';
+import auth from '../../firebase.init';
 import './AddItem.css';
 
+
 const AddItems = () => {
+  const [user] = useAuthState(auth)
   const handelAddFurniture = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
@@ -19,9 +24,10 @@ const AddItems = () => {
       quantity,
       sold,
       supplier,
+      email: user.email,
     };
-    
-    fetch('https://vast-wave-24751.herokuapp.com/furnitures', {
+     
+    fetch(`${baseUrl}/furnitures`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json',

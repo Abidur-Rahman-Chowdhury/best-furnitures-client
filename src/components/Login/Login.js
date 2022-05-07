@@ -12,6 +12,7 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Social from '../Social/Social';
 import axios from 'axios';
+import { baseUrl } from '../../api/constant';
 const Login = () => {
   const emailRef = useRef('');
   const passwordRef = useRef('');
@@ -34,7 +35,7 @@ const Login = () => {
     const password = passwordRef.current.value;
     await signInWithEmailAndPassword(email, password);
     const { data } = await axios.post(
-      'https://vast-wave-24751.herokuapp.com/login',
+      `${baseUrl}/login`,
       { email }
     );
     localStorage.setItem('accessToken', data.accessToken);

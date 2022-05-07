@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 import { Link, useParams } from 'react-router-dom';
+import { baseUrl } from '../../api/constant';
 import './UpdateStock.css';
 
 const UpdateStock = () => {
@@ -8,7 +9,7 @@ const UpdateStock = () => {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
+    const url = `${baseUrl}/furnitures/${id}`;
 
     fetch(url)
       .then((res) => res.json())
@@ -19,7 +20,7 @@ const UpdateStock = () => {
   const handelDelivered = () => {
     const newQuantity = items.quantity - 1;
     items.quantity = newQuantity;
-    const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
+    const url = `${baseUrl}/furnitures/${id}`;
 
     fetch(url, {
       method: 'PUT',
@@ -38,7 +39,7 @@ const UpdateStock = () => {
     e.preventDefault();
     const newQuantity = parseInt(e.target.quantity.value);
     items.quantity = items.quantity + newQuantity;
-    const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
+    const url = `${baseUrl}/furnitures/${id}`;
     fetch(url, {
       method: 'PUT',
       headers: {

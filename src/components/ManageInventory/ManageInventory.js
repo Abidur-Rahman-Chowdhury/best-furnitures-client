@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { baseUrl } from '../../api/constant';
 import useLoadFurnitures from '../../hooks/useLoadFurnitures';
 
 const ManageInventory = ({ furniture }) => {
@@ -8,7 +9,7 @@ const ManageInventory = ({ furniture }) => {
   const handelDelete = (id) => {
     const proceed = window.confirm('Are you sure you want to delete?');
     if (proceed) {
-      const url = `https://vast-wave-24751.herokuapp.com/furnitures/${id}`;
+      const url = `${baseUrl}/furnitures/${id}`;
       
       fetch(url, {
         method: 'DELETE',

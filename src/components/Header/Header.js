@@ -9,7 +9,7 @@ const Header = () => {
     const [user, loading] = useAuthState(auth);
     
   return (
-      <nav className='bg-[#FFFFFF] shadow-md sticky top-0' style={{"z-index": "10000"}}>
+      <nav className='bg-[#FFFFFF] shadow-md sticky top-0' style={{"zIndex": "10000"}}>
           <div className="container flex flex-col  p-10 items-center sm:flex-col md:gap-y-4 lg:flex-row justify-between">
               <div>
                   <h2 className='text-2xl font-bold'>Best <span className='text-red-700'>Furniture </span> </h2>

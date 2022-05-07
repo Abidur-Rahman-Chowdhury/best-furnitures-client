@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useNavigate } from 'react-router-dom';
+import { baseUrl } from '../../../api/constant';
 import auth from '../../../firebase.init';
 import './Furniture.css';
 
@@ -12,23 +13,7 @@ const Furniture = ({ furniture }) => {
   const navigateToUpdateStock = (id) => {
     navigate(`/update-stock/${id}`);
   };
-  const addMyItems = () => {
-    furniture.email = user.email;
-    delete furniture._id;
-
-    fetch('https://vast-wave-24751.herokuapp.com/myItems', {
-      method: 'POST',
-      headers: {
-        'content-type': 'application/json',
-      },
-      body: JSON.stringify(furniture),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        
-        alert('Successfully added my items');
-      });
-  };
+  
 
   return (
     <div>
@@ -46,12 +31,7 @@ const Furniture = ({ furniture }) => {
           >
             Update Stocks
           </button>
-          <button
-            className="bg-[#338A71] px-2 py-1 mt-4 mr-2 text-white font-bold"
-            onClick={addMyItems}
-          >
-            Add My Items
-          </button>
+          
         </div>
       </div>
     </div>
