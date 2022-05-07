@@ -15,7 +15,7 @@ const MyItems = () => {
     const getItems = async () => {
       const email = user.email;
       const url = `${baseUrl}/myItems?email=${email}`;
-      console.log(url);
+      
       try {
         const { data } = await axios.get(url, {
           headers: {
