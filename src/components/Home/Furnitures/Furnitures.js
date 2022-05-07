@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useLoadFurnitures from '../../../hooks/useLoadFurnitures';
 import LoadingSpinner from '../../LoadingSpinner/LoadingSpinner';
 import Furniture from '../Furniture/Furniture';
+import './Furnitures.css'
 
 const Furnitures = () => {
     const [furnitures, setFurnitures] = useLoadFurnitures();
@@ -27,7 +28,7 @@ const Furnitures = () => {
                 <button className='bg-[#6C63FF] px-2 py-1 mt-4 mr-2 text-white font-bold' >Manage Inventory</button>
                 </Link>
             </div>
-           <hr className='bg-[black] h-[15px] mt-10' />
+           <hr className='bg-[black] h-[15px] mt-10' style={{"z-index": "-10000"}}  />
         </div>
     );
 };
