@@ -28,7 +28,7 @@ const Furnitures = () => {
                 <button className='bg-[#6C63FF] px-2 py-1 mt-4 mr-2 text-white font-bold' >Manage Inventory</button>
                 </Link>
             </div>
-           <hr className='bg-[black] h-[15px] mt-10' style={{"z-index": "-10000"}}  />
+           <hr className='bg-[black] h-[15px] mt-10' style={{zIndex: -10000}}  />
         </div>
     );
 };
